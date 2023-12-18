@@ -33,6 +33,9 @@ const editCOPE = async (page, opcion) => {
         }, opcion);
 
         if (changeConfirm) {
+
+            await page.click('.btn.btn-danger');
+
             return true;
         } else {
             return false;
