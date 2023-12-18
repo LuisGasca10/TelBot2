@@ -1,19 +1,16 @@
 const express = require('express');
-const { scrapeLogic } = require("./scrapelogic");
+const cors = require('cors');
+const helmet = require('helmet');
+const apiRoute = require('./src/routes/routes');
 const app = express();
 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-    res.send("New message!")
-});
+app.use(express.json());
+app.use(cors());
+app.use(helmet());
 
-app.get("/scrape", (req, res) => {
-    scrapeLogic(res);
-})
+app.use("/whatsapp", apiRoute);
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`)
-});
-
+app.listen(PORT, () => console.log(`El puerto es + ${PORT}`));
