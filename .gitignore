@@ -1,2 +1,6 @@
 /node_modules
 .env
+functions
+.cache
+logs.txt
+screenshot.png
