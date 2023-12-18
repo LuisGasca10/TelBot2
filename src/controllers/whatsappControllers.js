@@ -73,11 +73,11 @@ const getTextUser = (message) => {
         } else if (typeInteractive === "list_reply") {
             text = (interactiveObject["list_reply"])["title"];
         } else {
-            myConsole.log("Sin mensaje")
+            console.log("Sin mensaje")
         }
 
     } else {
-        myConsole.log("Sin mensaje")
+        console.log("Sin mensaje")
     }
     return text;
 }

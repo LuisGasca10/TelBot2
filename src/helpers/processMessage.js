@@ -140,7 +140,6 @@ async function signInPage(info) {
 
 
     } catch (error) {
-        myConsole.log(error);
         console.log(error);
     }
 
