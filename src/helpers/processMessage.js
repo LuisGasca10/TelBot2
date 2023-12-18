@@ -61,12 +61,12 @@ async function signInPage(info) {
                 process.env.NODE_ENV === 'production'
                     ? process.env.PUPPETEER_EXECUTABLE_PATH
                     : puppeteer.executablePath(),
-            args: [
-                "--disable-setuid-sandbox",
-                "--no-sandbox",
-                "--single-process",
-                "--no-zygote",
-            ],
+            // args: [
+            //     "--disable-setuid-sandbox",
+            //     "--no-sandbox",
+            //     "--single-process",
+            //     "--no-zygote",
+            // ],
             headless: 'new'
         });
 
