@@ -35,7 +35,7 @@ const editCOPE = async (page, opcion) => {
 
         if (changeConfirm) {
 
-            await page.click('.btn.btn-danger');
+            // await page.click('.btn.btn-danger');
 
             return true;
         } else {
@@ -92,8 +92,7 @@ const editModalidad = async (page, opcion) => {
         }, modalidad);
 
         if (changeConfirm) {
-            await page.click('.btn.btn-danger');
-            await browser.close();
+            // await page.click('.btn.btn-danger');
             return true;
         } else {
             return false;
@@ -170,7 +169,7 @@ const editCOPEandModalidad = async (page, opciones) => {
 
 
         if (changeCOPEConfirm && changeModalidadConfirm) {
-            await page.click('.btn.btn-danger');
+            // await page.click('.btn.btn-danger');
             return true
         } else {
             return false;
