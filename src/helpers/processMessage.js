@@ -158,6 +158,10 @@ async function signInPage(info) {
     } catch (error) {
         await browser.close();
         console.log(error);
+        return false
+    } finally {
+        await browser.close();
+        // return success;
     }
 
 }
