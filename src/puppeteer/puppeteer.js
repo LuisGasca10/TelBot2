@@ -188,7 +188,7 @@ const editCOPEandModalidad = async (page, opciones) => {
 
 }
 
-const editZonas = async (page, opciones, prioridad) => {
+const editZonas = async (page, opciones, prioridad, browser) => {
 
     try {
         // Obtiene el contenido del elemento y almacénalo en una constante
@@ -429,6 +429,7 @@ const editZonas = async (page, opciones, prioridad) => {
         // } else {
         //     console.log(`No se encontró el botón "${buttonText}".`);
         // }
+        await browser.close();
 
         return true;
     } catch (error) {
