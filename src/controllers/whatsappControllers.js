@@ -35,7 +35,7 @@ const reciveMessage = async (req, res) => {
             const text = getTextUser(message);
             const numCorrect = numCorrection.correctionMex(number);
             const tarea = extraerTarea(text);
-            console.log(tarea);
+            console.log('tarea');
 
 
             if (text != "") {
