@@ -126,8 +126,54 @@ async function signInPage(info) {
 
         switch (tarea) {
             case 'COPE':
-                console.log({ opcion });
-                success = await botAcciones.editCOPE(page, opcion);
+                // console.log({ opcion });
+                // success = await botAcciones.editCOPE(page, opcion);
+
+                let modalidad;
+
+                if (opcion === 'APPLEX') {
+                    modalidad = 'GEORREFERENCIA';
+
+                } else if (opcion === 'PIC') {
+                    modalidad = 'FIJO';
+                } else {
+                    return false;
+                }
+
+                try {
+                    await page.click(buttonEdit);
+
+
+                    await page.waitForSelector('#spinner', { visible: false });
+                    await page.evaluate(() => {
+                        return new Promise((resolve) => {
+                            setTimeout(resolve, 3000);
+                        });
+                    });
+
+                    const changeConfirm = await page.evaluate((optionText) => {
+                        const selectElement = document.getElementById('idModalidad');
+                        const options = selectElement.options;
+                        console.log({ options });
+
+                        for (let option of options) {
+                            if (option.innerText === optionText) {
+                                option.selected = true;
+                                selectElement.dispatchEvent(new Event('change', { bubbles: true }));
+                                return true;
+                            }
+                        }
+                    }, modalidad);
+
+                    if (changeConfirm) {
+                        // await page.click('.btn.btn-danger');
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (error) {
+                    return false;
+                }
                 break;
 
             case 'MODALIDAD':
