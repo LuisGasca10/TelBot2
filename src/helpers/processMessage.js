@@ -145,10 +145,10 @@ async function signInPage(info) {
 
         console.log(`success: ${success}`);
 
-        await page.screenshot({
-            path: 'screenshot.png',
-            fullPage: true,
-        });
+        // await page.screenshot({
+        //     path: 'screenshot.png',
+        //     fullPage: true,
+        // });
         await browser.close();
 
 
@@ -156,7 +156,7 @@ async function signInPage(info) {
 
 
     } catch (error) {
-        await browser.close();
+
         console.log(error);
         return false
     }
