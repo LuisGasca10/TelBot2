@@ -159,9 +159,6 @@ async function signInPage(info) {
         await browser.close();
         console.log(error);
         return false
-    } finally {
-        await browser.close();
-        // return success;
     }
 
 }
