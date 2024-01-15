@@ -6,7 +6,7 @@ require("dotenv").config();
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 
-
+const buttonZona = 'table.table tbody tr:nth-child(1) td:nth-child(17) button';
 
 const description = '[class="description"]';
 
@@ -34,8 +34,6 @@ const processMessage = async (textUser, num) => {
         console.log(error);
     };
 
-    // }
-
     models.forEach(model => {
         whatsappService.sendMessageWhatsApp(model);
     });
@@ -51,26 +49,38 @@ const processMessage = async (textUser, num) => {
 async function signInPage(info) {
 
     try {
-        const { tarea, expediente, opcion } = info;
+        const { tarea, expediente, opcion, prioridad } = info;
 
         let success = false;
-
+        console.log({ info });
 
         const browser = await puppeteer.launch({
-            executablePath:
-                process.env.NODE_ENV === 'production'
-                    ? process.env.PUPPETEER_EXECUTABLE_PATH
-                    : puppeteer.executablePath(),
-            // args: [
-            //     "--disable-setuid-sandbox",
-            //     "--no-sandbox",
-            //     "--single-process",
-            //     "--no-zygote",
-            // ],
-            headless: 'new'
+            // executablePath:
+            //     process.env.NODE_ENV === 'production'
+            //         ? process.env.PUPPETEER_EXECUTABLE_PATH
+            //         : puppeteer.executablePath(),
+            ignoreDefaultArgs: ['--disable-extensions'],
+            args: [
+                "--disable-setuid-sandbox",
+                '--no-sandbox',
+                "--single-process",
+                "--no-zygote",
+                '--disable-gpu',
+                '--disable-dev-shm-usage',
+                '--disable-setuid-sandbox',
+                '--no-first-run',
+                '--no-sandbox',
+                '--no-zygote',
+                '--deterministic-fetch',
+                '--disable-features=IsolateOrigins',
+                '--disable-site-isolation-trials',
+                '--disable-features=site-per-process',
+            ],
+
+            headless: false
         });
 
-        console.log({ info });
+        // console.log({ info });
         const page = await browser.newPage();
         console.log('NEW PAGE');
         // await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")
@@ -111,6 +121,9 @@ async function signInPage(info) {
         await page.waitForSelector(description);
 
 
+
+
+
         switch (tarea) {
             case 'COPE':
                 console.log({ opcion });
@@ -123,6 +136,9 @@ async function signInPage(info) {
 
             case 'AMBOS':
                 success = await botAcciones.editCOPEandModalidad(page, opcion);
+                break;
+            case 'ZONIFICAR':
+                success = await botAcciones.editZonas(page, opcion, prioridad)
                 break;
 
         }

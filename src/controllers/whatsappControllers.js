@@ -95,9 +95,21 @@ module.exports = {
  * @returns -EL mensaje separado en partes
  */
 const extraerTarea = (message) => {
-
+    let messageTemp = message
     let expediente = '';
     let opcion = '';
+    let prioridad = null;
+
+    const match = messageTemp.match(/Prioridad:(\d+)/);
+    if (match && match[1]) {
+        prioridad = match[1];
+
+        messageTemp = messageTemp.replace(match[0], '');
+
+    } else {
+        console.log('No se encontró la prioridad.');
+    }
+
     //Extrae el expedinete
     if (message.includes('Modalidad:')) {
         expediente = _.split(message, 'Expediente:')[1].split(' Modalidad:')[0];
@@ -105,6 +117,8 @@ const extraerTarea = (message) => {
         expediente = _.split(message, 'Expediente:')[1].split(' Cope:')[0];
     } else if (message.includes('Ambos:')) {
         expediente = _.split(message, 'Expediente:')[1].split(' Ambos:')[0];
+    } else if (message.includes('Zonas:')) {
+        expediente = _.split(message, 'Expediente:')[1].split(' Zonas:')[0];
     };
     //EXtrae el cope o la madalidad
     let tarea = _.split(message, ' Expediente:')[0];
@@ -119,6 +133,7 @@ const extraerTarea = (message) => {
             tarea,
             expediente,
             opcion,
+            prioridad
         }
     } else if (tarea === 'MODALIDAD') {
         opcion = _.split(message, 'Modalidad:')[1].toUpperCase();
@@ -126,15 +141,47 @@ const extraerTarea = (message) => {
         return {
             tarea,
             expediente,
-            opcion
+            opcion,
+            prioridad
         }
     } else if (tarea === 'AMBOS') {
         opcion = _.split(message, 'Ambos:')[1].toUpperCase();
         return {
             tarea,
             expediente,
-            opcion
+            opcion,
+            prioridad
         }
+    } else if (tarea === 'ZONIFICAR') {
+
+
+        opcion = _.split(messageTemp, 'Zonas:')[1];
+
+        if (opcion.toLowerCase().trim() === 'seleccionar todo' || opcion.toLowerCase().trim() === 'deseleccionar todo') {
+
+            return {
+                tarea,
+                expediente,
+                opcion,
+                prioridad
+            }
+        } else {
+            opcion = opcion.split(',');
+
+            opcion = opcion.map(numero => {
+                const numeroEntero = parseInt(numero, 10);
+                return numeroEntero < 10 ? `0${numeroEntero}` : `${numeroEntero}`;
+            });
+            return {
+                tarea,
+                expediente,
+                opcion,
+                prioridad
+            }
+
+        }
+
+
     }
 
 }
