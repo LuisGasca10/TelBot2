@@ -55,29 +55,29 @@ async function signInPage(info) {
         console.log({ info });
 
         const browser = await puppeteer.launch({
-            // executablePath:
-            //     process.env.NODE_ENV === 'production'
-            //         ? process.env.PUPPETEER_EXECUTABLE_PATH
-            //         : puppeteer.executablePath(),
-            ignoreDefaultArgs: ['--disable-extensions'],
-            args: [
-                "--disable-setuid-sandbox",
-                '--no-sandbox',
-                "--single-process",
-                "--no-zygote",
-                '--disable-gpu',
-                '--disable-dev-shm-usage',
-                '--disable-setuid-sandbox',
-                '--no-first-run',
-                '--no-sandbox',
-                '--no-zygote',
-                '--deterministic-fetch',
-                '--disable-features=IsolateOrigins',
-                '--disable-site-isolation-trials',
-                '--disable-features=site-per-process',
-            ],
+            executablePath:
+                process.env.NODE_ENV === 'production'
+                    ? process.env.PUPPETEER_EXECUTABLE_PATH
+                    : puppeteer.executablePath(),
+            // ignoreDefaultArgs: ['--disable-extensions'],
+            // args: [
+            //     "--disable-setuid-sandbox",
+            //     '--no-sandbox',
+            //     "--single-process",
+            //     "--no-zygote",
+            //     '--disable-gpu',
+            //     '--disable-dev-shm-usage',
+            //     '--disable-setuid-sandbox',
+            //     '--no-first-run',
+            //     '--no-sandbox',
+            //     '--no-zygote',
+            //     '--deterministic-fetch',
+            //     '--disable-features=IsolateOrigins',
+            //     '--disable-site-isolation-trials',
+            //     '--disable-features=site-per-process',
+            // ],
 
-            headless: false
+            headless: 'new'
         });
 
         // console.log({ info });
