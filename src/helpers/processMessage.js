@@ -16,6 +16,7 @@ const processMessage = async (textUser, num) => {
 
     let models = [];
     try {
+        console.log('Inicio');
         const accion = await signInPage(textUser);
 
         if (accion === true) {
@@ -82,7 +83,6 @@ async function signInPage(info) {
 
         // console.log({ info });
         const page = await browser.newPage();
-        console.log('NEW PAGE');
         await page.setViewport({
             width: 1920,
             height: 1080,
