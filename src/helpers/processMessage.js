@@ -83,7 +83,6 @@ async function signInPage(info) {
         // console.log({ info });
         const page = await browser.newPage();
         console.log('NEW PAGE');
-        // await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")
         await page.setViewport({
             width: 1920,
             height: 1080,
@@ -138,7 +137,7 @@ async function signInPage(info) {
                 success = await botAcciones.editCOPEandModalidad(page, opcion);
                 break;
             case 'ZONIFICAR':
-                success = await botAcciones.editZonas(page, opcion, prioridad)
+                success = await botAcciones.editZonas(page, opcion, prioridad, browser)
                 break;
 
         }

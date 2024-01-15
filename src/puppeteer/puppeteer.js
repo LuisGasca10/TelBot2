@@ -429,7 +429,7 @@ const editZonas = async (page, opciones, prioridad, browser) => {
         // } else {
         //     console.log(`No se encontró el botón "${buttonText}".`);
         // }
-        await browser.close();
+
 
         return true;
     } catch (error) {
