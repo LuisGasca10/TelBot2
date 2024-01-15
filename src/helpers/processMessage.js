@@ -36,6 +36,7 @@ const processMessage = async (textUser, num) => {
     };
 
     models.forEach(model => {
+        console.log('bucle');
         whatsappService.sendMessageWhatsApp(model);
     });
 
