@@ -44,6 +44,31 @@ const processMessage = async (textUser, num) => {
 }
 
 
+const processAyuda = async (num) => {
+
+    let models = [];
+    try {
+        console.log('Inicio de ayuda');
+        const mensaje = "Formatos de mensajes:\n*Para Modalidad*\nMODALIDAD Expediente:[EXPEDIENTE] Modalidad:[MODALIDAD]\n\n*Para Cope*\nCOPE Expediente:[EXPEDIENTE] Cope:[COPE]\n\n*Para Modalidad y Cope*\nAMBOS Expediente:[EXPEDIENTE] Ambos:[COPE],[MODALIDAD]\n\n*Para Zonificar*\nZONIFICAR Expediente:[EXPEDIENTE] Zonas:[ZONAS] Prioridad:[PRIORIDAD](Solamente en fijo)"
+        const data = whatsappModel.messageText(mensaje, num);
+        models.push(data);
+
+
+    } catch (error) {
+        const data = whatsappModel.messageText('Error en la petición', num);
+        models.push(data);
+        console.log(error);
+    };
+
+    models.forEach(model => {
+        console.log('Enviando mensaje');
+        whatsappService.sendMessageWhatsApp(model);
+    });
+
+
+}
+
+
 
 
 

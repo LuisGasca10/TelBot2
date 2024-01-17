@@ -39,8 +39,10 @@ const reciveMessage = async (req, res) => {
 
 
             if (text != "") {
-                console.log('ANTES DEL PROCESSMESSAGE');
-                await prcocessMessage.processMessage(tarea, numCorrect);
+                if (text === '!ayuda') {
+                    await prcocessMessage.processAyuda(numCorrect);
+                }
+                else await prcocessMessage.processMessage(tarea, numCorrect);
             }
 
         }
