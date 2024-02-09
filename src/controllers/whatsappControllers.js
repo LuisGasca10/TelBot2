@@ -8,7 +8,7 @@ const _ = require('lodash');
 
 const verifyToken = (req, res) => {
     try {
-        const accessToken = "Fyf?imxoRiQBQ9rRBQbbKYRpdU3ZD74B2i?Ka3rfO8ZP1EIiDMP/DttWRTWF!n6k";
+        const accessToken = "EAAPdsi4zRZAoBO2OnZBZCMvgmZCGA2LiDhFRQgjRBZAX6nPOzyURQl2ZApKGIivUzQ2P367wX84yVeQudBlmZAZAN7lgHgwDn4VaZBAZCL4b4k94ntOZCC30vwEhvknJCfyc0dzqVqoPZAduZAzfE8pli91v41uGoZCB9SMSmq4WtNpouQtFh56oBqOkJFVtF1YZCDSDPik";
         const token = req.query["hub.verify_token"];
         const challenge = req.query["hub.challenge"];
 
