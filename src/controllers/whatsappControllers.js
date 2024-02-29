@@ -28,21 +28,26 @@ const reciveMessage = async (req, res) => {
         const changes = (entry["changes"])[0];
         const value = changes["value"];
         const messageObject = value["messages"]
-        console.log('ANTES DE IF');
+
         if (typeof messageObject != "undefined") {
             const message = messageObject[0];
             const number = message["from"]
             const text = getTextUser(message);
             const numCorrect = numCorrection.correctionMex(number);
-            const tarea = extraerTarea(text);
-            console.log('tarea');
+            // const tarea = extraerTarea(text);
+
 
 
             if (text != "") {
-                if (text === '!ayuda') {
-                    await prcocessMessage.processAyuda(numCorrect);
-                }
-                else await prcocessMessage.processMessage(tarea, numCorrect);
+
+
+                // if (text === '!ayuda') {
+                //     await prcocessMessage.processAyuda(numCorrect);
+                // }
+                // else 
+
+
+                await prcocessMessage.processMessage(tarea, numCorrect);
             }
 
         }

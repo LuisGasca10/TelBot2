@@ -16,18 +16,19 @@ const processMessage = async (textUser, num) => {
 
     let models = [];
     try {
-        console.log('Inicio');
-        const accion = await signInPage(textUser);
+        // console.log('Inicio');
+        // const accion = await signInPage(textUser);
+        console.log({ textUser })
+        const data = whatsappModel.messageText('Mensaje recibido', num);
+        models.push(data);
 
-        if (accion === true) {
-            const data = whatsappModel.messageText('Se completo la accion', num);
-            models.push(data);
+        // if (accion === true) {
 
 
-        } else {
-            const data = whatsappModel.messageText('No se pudo completar la operacion', num);
-            models.push(data);
-        }
+        // } else {
+        //     const data = whatsappModel.messageText('No se pudo completar la operacion', num);
+        //     models.push(data);
+        // }
 
     } catch (error) {
         const data = whatsappModel.messageText('Error en la petición', num);
@@ -36,7 +37,7 @@ const processMessage = async (textUser, num) => {
     };
 
     models.forEach(model => {
-        console.log('bucle');
+
         whatsappService.sendMessageWhatsApp(model);
     });
 
